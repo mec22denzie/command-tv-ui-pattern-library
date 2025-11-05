@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+b<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -212,7 +212,494 @@
 			</section>
 			<!-- elements: Haocheng -->
 			<section id="elements" class="show">
-				<p>elements content... developing</p>
+				<!-- button section -->
+				<div class="card p-4 shadow">
+					<p>Buttons</p>
+					<div class="mt-4">
+						<label class="h_sub_title">Button Variants</label>
+						<div class="mt-2">
+							<button class="h_btn-primary">Primary Button</button>
+							<button class="h_btn-secondary">Secondary</button>
+							<button class="h_btn-outline">Outline</button>
+							<button class="h_btn-ghost">Ghost</button>
+							<button class="h_btn-destructive">Destructive</button>
+							<button class="h_btn-link">Link</button>
+						</div>
+					</div>
+
+					<div class="mt-2">
+						<pre class="bg-light p-3 rounded">
+&lt;button class="h_btn-primary"&gt;Primary Button&lt;/button&gt;
+&lt;button class="h_btn-secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="h_btn-outline"&gt;Outline&lt;/button&gt;
+&lt;button class="h_btn-ghost"&gt;Ghost&lt;/button&gt;
+&lt;button class="h_btn-destructive"&gt;Destructive&lt;/button&gt;
+&lt;button class="h_btn-link"&gt;Link&lt;/button&gt;</pre
+						>
+					</div>
+					<button class="h_btn-link h_show-more" id="toggleCssCode">Toggle Css Code</button>
+					<!-- buttons css code here -->
+					<div class="hidden h_code_review" id="buttonCssCode">
+						<pre class="bg-light p-3 rounded mt-2">
+/* Primary button */
+.h_btn-primary {
+	background-color: #3b118d;
+	color: white;
+}
+
+.h_btn-primary:hover {
+	background-color: #725fa8;
+	transform: translateY(-1px);
+}
+
+/* Secondary button */
+.h_btn-secondary {
+	background-color: #8d1179;
+	color: white;
+}
+
+.h_btn-secondary:hover {
+	background-color: #bf81a6;
+	transform: translateY(-1px);
+}
+
+/* Outline button */
+.h_btn-outline {
+	background-color: #f7f2fa;
+	color: #1a1625;
+	border: 1px solid #3b118d;
+}
+
+.h_btn-outline:hover {
+	background-color: #3b118d;
+	color: white;
+}
+/* Ghost button */
+.h_btn-ghost {
+	background-color: transparent;
+	color: #1a1625;
+	border: none;
+}
+
+.h_btn-ghost:hover {
+	background-color: #f3f1fa;
+	color: #725fa8;
+	transform: translateY(-1px);
+}
+
+/* Destructive button */
+.h_btn-destructive {
+	background-color: #e35858;
+	color: white;
+}
+
+.h_btn-destructive:hover {
+	background-color: #d73f3f;
+	transform: translateY(-1px);
+}
+
+/* Link button */
+.h_btn-link {
+	background-color: transparent;
+	color: #3b118d;
+	border: none;
+
+	padding: 8px 12px;
+}
+
+.h_btn-link:hover {
+	color: #725fa8;
+	text-decoration: none;
+	background-color: transparent;
+	transform: none;
+	text-decoration: underline;
+}
+
+.h_btn-link:focus {
+	outline: 2px solid #3b118d;
+	outline-offset: 2px;
+}
+				</pre
+						>
+					</div>
+					<hr />
+					<div class="mt-2">
+						<label class="h_sub_title">Button Sizes</label>
+						<div class="mt-2">
+							<button class="h_btn-primary h_btn_sm">Small</button>
+							<button class="h_btn-primary">Default</button>
+							<button class="h_btn-primary h_btn_lg">Large</button>
+						</div>
+					</div>
+					<div class="mt-2">
+						<!-- html code -->
+						<pre class="bg-light p-3 rounded">
+&lt;button class="h_btn-primary h_btn_sm"&gt;Small&lt;/button&gt; 
+&lt;button class="h_btn-primary"&gt;Default&lt;/button&gt;
+&lt;button class="h_btn-primary h_btn_lg"&gt;Large&lt;/button&gt;
+
+.h_btn_sm {
+	padding: 8px 16px;
+}
+.h_btn_lg {
+	padding: 12px 24px;
+}</pre
+						>
+					</div>
+				</div>
+				<!-- form inputs -->
+				<div class="card p-4 shadow mt-4">
+					<p>Form Inputs</p>
+					<div class="mt-4 d-flex flex-column">
+						<label for="defaultInput">Default Input</label>
+						<input type="text" id="defaultInput" placeholder="Enter text..." />
+					</div>
+					<div class="mt-4 d-flex flex-column">
+						<label for="disabledInput">Disabled Input</label>
+						<input type="text" id="disabledInput" placeholder="Disabled..." />
+					</div>
+					<div class="mt-4 d-flex flex-column">
+						<label for="textArea">Textarea</label>
+						<textarea type="text" id="textArea" placeholder="textarea for long content"></textarea>
+					</div>
+					<div class="mt-4">
+						<!-- html code -->
+						<pre class="bg-light p-3 rounded">
+&lt;input type="text" id="defaultInput" placeholder="Enter text..." /&gt;
+&lt;input type="text" id="disabledInput" placeholder="Disabled..." /&gt;
+&lt;textarea type="text" id="textArea" placeholder="textarea for long content">&lt;/textarea&gt;</pre
+						>
+						<button id="toggleInputCssCode" class="h_btn-link">Toggle Css Code</button>
+						<!-- css code  -->
+						<div class="hidden h_code_review" id="inputCssCode">
+							<pre class="bg-light p-3 rounded">
+								
+input {
+	border: none;
+	outline: none;
+	background: transparent;
+	border-bottom: 2px solid #d9d9e0;
+	padding: 12px 4px;
+	font-family: "Poppins", sans-serif;
+	font-size: 16px;
+	transition: border-color 0.3s ease;
+}
+input:focus {
+	border-bottom: 2px solid #3b118d;
+}
+input::placeholder {
+	color: #bdb7ce;
+}
+
+textarea {
+	border: none;
+	outline: none;
+	background: transparent;
+	border-bottom: 2px solid #d9d9e0;
+	padding: 12px 4px;
+	font-family: "Poppins", sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+	resize: vertical;
+	min-height: 60px;
+}
+textarea:focus {
+	border-bottom: 2px solid #3b118d;
+}
+
+textarea::placeholder {
+	color: #bdb7ce;
+}
+							</pre
+							>
+						</div>
+					</div>
+				</div>
+				<!-- selections -->
+				<div class="card p-4 shadow mt-4">
+					<p>Selections</p>
+					<div class="container">
+						<div class="row">
+							<div class="col-6">
+								<p>Checkboxes</p>
+								<div class="form-check mb-3">
+									<input
+										class="form-check-input h_checkbox"
+										type="checkbox"
+										id="checkedOption"
+										checked />
+									<label class="form-check-label" for="checkedOption">Checked Option</label>
+								</div>
+								<div class="form-check mb-3">
+									<input class="form-check-input h_checkbox" type="checkbox" id="unCheckedOption" />
+									<label class="form-check-label" for="unCheckedOption">Unchecked Option</label>
+								</div>
+								<div class="form-check mb-3">
+									<input
+										class="form-check-input h_checkbox"
+										type="checkbox"
+										id="disabledOption"
+										disabled />
+									<label class="form-check-label text-disabled" for="disabledOption"
+										>Disabled Option</label
+									>
+								</div>
+								<div class="form-check mb-3">
+									<input
+										class="form-check-input h_checkbox"
+										type="checkbox"
+										id="disabledCheckedOption"
+										checked
+										disabled />
+									<label class="form-check-label text-disabled" for="disabledCheckedOption"
+										>Disabled Checked</label
+									>
+								</div>
+								<div class="h_code_review">
+									<pre class="bg-light p-3 rounded">
+	&lt;input class="form-check-input h_checkbox" type="checkbox" id="checkedOption" checked /&gt;
+	&lt;label class="form-check-label" for="checkedOption">Checked Option&lt;/label&gt;
+	
+	&lt;input class="form-check-input h_checkbox" type="checkbox" id="unCheckedOption" /&gt;
+	&lt;label class="form-check-label" for="unCheckedOption">Unchecked Option&lt;/label&gt;
+				
+	&lt;input class="form-check-input h_checkbox" type="checkbox" id="disabledOption" disabled /&gt;
+	&lt;label class="form-check-label text-disabled" for="disabledOption"&gt;Disabled Option&lt;/label&gt;
+							
+	&lt;input class="form-check-input h_checkbox" type="checkbox" id="disabledCheckedOption" checked disabled /&gt;
+	&lt;label class="form-check-label text-disabled" for="disabledCheckedOption"&gt;Disabled Checked&lt;/label&gt;
+
+	/* checkboxes */
+input[type="checkbox"] {
+	padding: 2px;
+}
+
+.h_checkbox {
+	width: 18px !important;
+	height: 18px !important;
+	border: 1px solid #d9d9e0 !important;
+	border-radius: 3px !important;
+	background-color: white !important;
+	cursor: pointer !important;
+	transition: all 0.3s ease !important;
+	background-image: none !important;
+}
+
+.h_checkbox:hover {
+	border-color: #725fa8 !important;
+}
+
+.h_checkbox:checked {
+	background-color: #3b118d !important;
+	border-color: #3b118d !important;
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e") !important;
+}
+
+.h_checkbox:focus {
+	box-shadow: 0 0 0 0.25rem rgba(59, 17, 141, 0.25) !important;
+}
+
+.h_checkbox:disabled {
+	background-color: #f3f1fa !important;
+	border-color: #bdb7ce !important;
+	cursor: not-allowed !important;
+	opacity: 1 !important;
+}
+
+.h_checkbox:disabled:checked {
+	background-color: #bdb7ce !important;
+	border-color: #bdb7ce !important;
+}
+
+.form-check-label {
+	font-family: "Poppins", sans-serif !important;
+	font-size: 16px !important;
+	color: #1a1625 !important;
+	cursor: pointer !important;
+}
+
+.text-disabled {
+	color: #bdb7ce !important;
+}
+							</pre
+									>
+								</div>
+							</div>
+
+							<div class="col-6">
+								<p>Radio Buttons</p>
+								<div class="d-flex gap-2 align-items-center">
+									<input
+										type="radio"
+										id="opt1"
+										checked
+										name="opt"
+										value="1"
+										class="form-check-input h_radio" />
+									<label for="opt1" class="form-check-label">Option1</label>
+								</div>
+								<div class="d-flex gap-2 align-items-center">
+									<input
+										type="radio"
+										id="opt2"
+										name="opt"
+										value="2"
+										class="form-check-input h_radio" />
+									<label for="opt2" class="form-check-label">Option2</label>
+								</div>
+								<div class="d-flex gap-2 align-items-center">
+									<input
+										type="radio"
+										id="opt3"
+										name="opt"
+										value="3"
+										class="form-check-input h_radio" />
+									<label for="opt3" class="form-check-label">Option3</label>
+								</div>
+
+								<div class="h_code_review mt-4">
+									<pre class="bg-light p-3 rounded">
+&lt;input type="radio" id="opt1" checked name="opt" value="1"
+		class="form-check-input h_radio" /&gt;
+&lt;label for="opt1" class="form-check-label">Option1&lt;/label&gt;
+
+&lt;input type="radio" id="opt2" name="opt" value="2"
+		class="form-check-input h_radio" /&gt;
+&lt;label for="opt2" class="form-check-label">Option2&lt;/label&gt;
+									
+&lt;input type="radio" id="opt3" name="opt" value="3"
+class="form-check-input h_radio" /&gt;
+<&lt;label for="opt3" class="form-check-label"&gt;Option3/&lt;label&gt;
+
+input[type="radio"] {
+	padding: 2px;
+	border: 1px solid #d9d9e0;
+}
+
+.h_radio {
+	width: 10px !important;
+	height: 10px !important;
+	border: 1px solid #d9d9e0 !important;
+	border-radius: 50% !important;
+	background-color: white !important;
+	cursor: pointer !important;
+	transition: all 0.3s ease !important;
+	background-image: none !important;
+	appearance: none !important;
+}
+
+.h_radio:checked {
+	background-color: #3b118d !important;
+	border-color: #3b118d !important;
+}
+
+.h_code_review {
+	width: 90%;
+	display: block;
+	overflow: auto;
+	height: 500px;
+}
+
+</pre
+									>
+								</div>
+							</div>
+						</div>
+						<!-- switch -->
+						<div class="row mt-4">
+							<div>
+								<p>Switch</p>
+								<div class="form-check form-switch d-flex gap-4 algin-items-center">
+									<input
+										class="form-check-input h_switch"
+										type="checkbox"
+										role="switch"
+										id="switchCheckChecked"
+										checked />
+									<label class="form-check-label" for="switchCheckChecked">switch components</label>
+								</div>
+							</div>
+							<div class="h_code_review mt-4">
+								<pre class="bg-light p-3 rounded">
+&lt;input class="form-check-input h_switch"
+					type="checkbox"
+					role="switch"
+					id="switchCheckChecked"
+					checked /&gt;
+&lt;label class="form-check-label" for="switchCheckChecked"&gt;switch components&lt;/label&gt;
+/* switch */
+.h_switch {
+	width: 48px !important;
+	height: 24px !important;
+	border-radius: 12px !important;
+	background-color: #d9d9e0 !important;
+	border: none !important;
+	cursor: pointer !important;
+	transition: all 0.3s ease !important;
+	background-image: none !important;
+	position: relative !important;
+}
+
+.h_switch:checked {
+	background-color: #3b118d !important;
+}
+
+.h_switch:focus {
+	box-shadow: 0 0 0 0.25rem rgba(59, 17, 141, 0.25) !important;
+}
+
+.h_switch::before {
+	content: "";
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: white;
+	top: 2px;
+	left: 2px;
+	transition: transform 0.3s ease;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.h_switch:checked::before {
+	transform: translateX(24px);
+}
+
+								</pre
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- badges -->
+				<div class="card p-4 shadow mt-4">
+					<p>Badges</p>
+					<div class="mt-2 d-flex gap-2 flex-wrap">
+						<span class="badge bg-primary">Primary</span>
+						<span class="badge bg-secondary">Secondary</span>
+						<span class="badge bg-error">Error</span>
+						<span class="badge bg-success">Success</span>
+						<span class="badge bg-info">Info</span>
+						<span class="badge bg-warning">Warning</span>
+						<span class="badge h_outline_badge">Outline</span>
+					</div>
+					<!-- badge code -->
+					<div class="mt-2 h_code_review">
+						<pre class="bg-light p-3 rounded">
+&lt;span class="badge bg-primary"&gt;Primary&lt;/span&gt;
+&lt;span class="badge bg-secondary"&gt;Secondary&lt;/span&gt;
+&lt;span class="badge bg-error"&gt;Error&lt;/span&gt;
+&lt;span class="badge bg-success"&gt;Success&lt;/span&gt;
+&lt;span class="badge bg-info"&gt;Info&lt;/span&gt;
+&lt;span class="badge bg-warning"&gt;Warning&lt;/span&gt;
+&lt;span class="badge h_outline_badge"&gt;Outline&lt;/span&gt;
+.h_outline_badge {
+	color: #1a1625;
+	border: 1px solid #d9d9e0;
+}</pre
+						>
+					</div>
+				</div>
 			</section>
 			<!-- charts: will be added after finish design of the chart, totally 9 charts image here -->
 			<section id="charts" class="hidden">

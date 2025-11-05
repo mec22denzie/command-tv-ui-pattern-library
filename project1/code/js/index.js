@@ -16,3 +16,12 @@ $("nav").on("click", e => {
 		$(`#${dataset}`).addClass("show");
 	}
 });
+
+// button element show more function
+$("#toggleCssCode").on("click", () => {
+	$("#buttonCssCode").toggleClass("hidden");
+});
+
+$("#toggleInputCssCode").on("click", () => {
+	$("#inputCssCode").toggleClass("hidden");
+});
