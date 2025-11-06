@@ -12,7 +12,7 @@
 }
 
 .h_btn-primary:hover {
-	background-color: #725fa8;
+	background-color: #7b66c4;
 	transform: translateY(-1px);
 }
 
@@ -23,7 +23,7 @@
 }
 
 .h_btn-secondary:hover {
-	background-color: #bf81a6;
+	background-color: #c17baf;
 	transform: translateY(-1px);
 }
 
@@ -37,6 +37,7 @@
 .h_btn-outline:hover {
 	background-color: #3b118d;
 	color: white;
+	transform: translateY(-1px);
 }
 /* Ghost button */
 .h_btn-ghost {
@@ -72,7 +73,7 @@
 }
 
 .h_btn-link:hover {
-	color: #725fa8;
+	color: #7b66c4;
 	text-decoration: none;
 	background-color: transparent;
 	transform: none;
