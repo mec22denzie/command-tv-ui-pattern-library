@@ -20,48 +20,48 @@
 }
 
 .bg-accent {
-	background-color: #11248d !important;
+	background-color: #b35fa8 !important;
 }
 .text-accent {
-	color: #11248d !important;
+	color: #b35fa8 !important;
 }
 .border-accent {
-	border-color: #11248d !important;
+	border-color: #b35fa8 !important;
 }
 
 /* ===== SOFT PASTEL VARIANTS ===== */
 .bg-primary-light {
-	background-color: #725fa8 !important;
+	background-color: #7b66c4 !important;
 }
 .text-primary-light {
-	color: #725fa8 !important;
+	color: #7b66c4 !important;
 }
 .border-primary-light {
-	border-color: #725fa8 !important;
+	border-color: #7b66c4 !important;
 }
 
 .bg-secondary-light {
-	background-color: #bf81a6 !important;
+	background-color: #c17baf !important;
 }
 .text-secondary-light {
-	color: #bf81a6 !important;
+	color: #c17baf !important;
 }
 .border-secondary-light {
-	border-color: #bf81a6 !important;
+	border-color: #c17baf !important;
 }
 
 .bg-accent-light {
-	background-color: #6b84c9 !important;
+	background-color: #e3bfe0 !important;
 }
 .text-accent-light {
-	color: #6b84c9 !important;
+	color: #e3bfe0 !important;
 }
 .border-accent-light {
-	border-color: #6b84c9 !important;
+	border-color: #e3bfe0 !important;
 }
 
 .bg-background {
-	background-color: #f8f7fd !important;
+	background-color: #f7f2fa !important;
 }
 
 /* ===== NEUTRAL & TEXT COLORS ===== */
@@ -135,7 +135,7 @@
 	background-color: #8d1179 !important;
 }
 .bg-highlight-3 {
-	background-color: #11248d !important;
+	background-color: #b35fa8 !important;
 }
 .bg-neutral-1 {
 	background-color: #d9d9e0 !important;
@@ -177,13 +177,13 @@
 
 /* ===== HOVER STATES ===== */
 .btn-primary:hover {
-	background-color: #725fa8 !important;
+	background-color: #7b66c4 !important;
 }
 .btn-secondary:hover {
-	background-color: #bf81a6 !important;
+	background-color: #c17baf !important;
 }
 .btn-accent:hover {
-	background-color: #6b84c9 !important;
+	background-color: #e3bfe0 !important;
 }
 
 /* ===== CUSTOM BUTTON CLASSES ===== */
@@ -200,7 +200,7 @@
 }
 
 .btn-accent {
-	background-color: #11248d;
-	border-color: #11248d;
+	background-color: #e3bfe0;
+	border-color: #e3bfe0;
 	color: white;
 }
