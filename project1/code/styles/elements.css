@@ -1,4 +1,11 @@
 /* this is css file for elements content, only Haocheng use this file */
+
+.h_title {
+	font-weight: 600;
+	font-size: 18px;
+	color: #1a1625;
+	font-family: "Poppins", sans-serif;
+}
 .h_sub_title {
 	font-weight: 500;
 	font-size: 14px;
@@ -185,7 +192,7 @@ input[type="radio"] {
 	width: 100%;
 	display: block;
 	overflow: auto;
-	height: 400px;
+	max-height: 400px;
 }
 
 /* switch */
