@@ -3,7 +3,7 @@
 $("nav").on("click", e => {
 	if (e.target.dataset.section) {
 		const dataset = e.target.dataset.section;
-		console.log(dataset);
+
 		$("nav li").removeClass("navSelected");
 
 		$(`#nav-${dataset}`).addClass("navSelected");
