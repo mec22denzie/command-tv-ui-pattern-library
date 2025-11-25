@@ -16,3 +16,451 @@ please refers to ./assets/charts/3_youtuberPerCategory.jpg and 4_MonthlyView for
 use the d3.select("#Taruns_chart_3")  d3.select("#Taruns_chart_4")  to select the dom placeholder 
 
 */
+
+// Tarun's charts: Chart 3 & Chart 4
+// This file uses D3 v7 (already loaded in index.html)
+
+// Helper for nicely formatted numbers
+const tarunFormatNum = d3.format(",");
+
+// -------- Chart 3: Each category's number of YouTubers --------
+(function renderTarunChart3() {
+	const container = d3.select("#Taruns_chart_3");
+	if (container.empty()) return;
+
+	// Clean anything that might already be there
+	container.selectAll("*").remove();
+
+	// Basic layout
+	const width = 600;
+	const height = 420;
+	const margin = { top: 60, right: 30, bottom: 110, left: 80 };
+	const innerWidth = width - margin.left - margin.right;
+	const innerHeight = height - margin.top - margin.bottom;
+
+	// Add a wrapper div for some spacing / title
+	const card = container.append("div").attr("class", "mb-4 p-3 bg-white rounded shadow-sm");
+
+	card
+		.append("h3")
+		.attr("class", "h_title mb-1")
+		.text("Chart 3 – Number of YouTubers per Category");
+
+	card
+		.append("p")
+		.attr("class", "h_sub_title mb-3")
+		.text(
+			"Counts how many channels appear in each category from the top 100 YouTube channels list."
+		);
+
+	const svg = card.append("svg").attr("width", width).attr("height", height);
+
+	const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+	d3.csv("./data/top_100_youtubers.csv")
+		.then(raw => {
+			// Group by Category and count channels
+			const categoryCounts = d3
+				.rollups(
+					raw,
+					v => v.length,
+					d => d.Category
+				)
+				.map(([Category, count]) => ({ Category, count }))
+				.sort((a, b) => d3.descending(a.count, b.count));
+
+			const x = d3
+				.scaleBand()
+				.domain(categoryCounts.map(d => d.Category))
+				.range([0, innerWidth])
+				.padding(0.2);
+
+			const y = d3
+				.scaleLinear()
+				.domain([0, d3.max(categoryCounts, d => d.count) || 0])
+				.nice()
+				.range([innerHeight, 0]);
+
+			// X Axis
+			g.append("g")
+				.attr("transform", `translate(0,${innerHeight})`)
+				.call(d3.axisBottom(x))
+				.selectAll("text")
+				.attr("transform", "rotate(-35)")
+				.style("text-anchor", "end")
+				.style("font-size", "11px");
+
+			// Y Axis
+			g.append("g").call(d3.axisLeft(y).ticks(6));
+
+			// Axis labels
+			g.append("text")
+				.attr("x", innerWidth / 2)
+				.attr("y", innerHeight + 70)
+				.attr("text-anchor", "middle")
+				.style("font-family", "'Merriweather', serif")
+				.style("font-size", "14px")
+				.style("fill", "#3b118d")
+				.text("Category");
+
+			g.append("text")
+				.attr("transform", "rotate(-90)")
+				.attr("x", -innerHeight / 2)
+				.attr("y", -50)
+				.attr("text-anchor", "middle")
+				.style("font-family", "'Merriweather', serif")
+				.style("font-size", "14px")
+				.style("fill", "#3b118d")
+				.text("Number of YouTubers");
+
+			// Tooltip
+			const tooltip = card
+				.append("div")
+				.attr("class", "tooltip shadow")
+				.style("position", "absolute")
+				.style("opacity", 0)
+				.style("pointer-events", "none")
+				.style("padding", "8px 10px")
+				.style("border-radius", "4px")
+				.style("background", "#b35fa8")
+				.style("color", "white")
+				.style("font-family", "'Merriweather', serif")
+				.style("font-size", "12px");
+
+			// Bars
+			const barColor = "#3b118d";
+
+			g.selectAll(".bar")
+				.data(categoryCounts)
+				.enter()
+				.append("rect")
+				.attr("class", "bar")
+				.attr("x", d => x(d.Category))
+				.attr("width", x.bandwidth())
+				.attr("y", innerHeight)
+				.attr("height", 0)
+				.style("fill", barColor)
+				.style("cursor", "pointer")
+				.transition()
+				.duration(800)
+				.attr("y", d => y(d.count))
+				.attr("height", d => innerHeight - y(d.count));
+
+			// Add hover interaction (after transition)
+			card
+				.selectAll("rect.bar")
+				.on("mouseover", function (event, d) {
+					d3.select(this).transition().duration(150).style("fill", "#8D1179");
+
+					tooltip
+						.style("opacity", 0.95)
+						.html(`<strong>${d.Category}</strong><br/>Channels: ${tarunFormatNum(d.count)}`)
+						.style("left", event.pageX + 10 + "px")
+						.style("top", event.pageY - 28 + "px");
+				})
+				.on("mouseout", function () {
+					d3.select(this).transition().duration(150).style("fill", barColor);
+					tooltip.style("opacity", 0);
+				});
+		})
+		.catch(err => {
+			console.error("Error loading data for Chart 3:", err);
+			card.append("p").attr("class", "text-danger mt-2").text("Unable to load data for Chart 3.");
+		});
+})();
+
+// -------- Chart 4: Top 5 channels average monthly views (line chart + switch) --------
+(function renderTarunChart4() {
+	const container = d3.select("#Taruns_chart_4");
+	if (container.empty()) return;
+
+	container.selectAll("*").remove();
+
+	const width = 650;
+	const height = 420;
+	const margin = { top: 60, right: 20, bottom: 80, left: 80 };
+	const innerWidth = width - margin.left - margin.right;
+	const innerHeight = height - margin.top - margin.bottom;
+
+	// Wrapper card
+	const card = container.append("div").attr("class", "mb-4 p-3 bg-white rounded shadow-sm");
+
+	const header = card
+		.append("div")
+		.attr(
+			"class",
+			"d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2 mb-3"
+		);
+
+	const titleBox = header.append("div");
+	titleBox
+		.append("h3")
+		.attr("class", "h_title mb-1")
+		.text("Chart 4 – Monthly Average Views (Top 5 Channels)");
+	titleBox
+		.append("p")
+		.attr("class", "h_sub_title mb-0")
+		.text("Toggle channels with checkboxes. Use the switch to quickly show or hide all lines.");
+
+	// Controls: checkboxes + switch
+	const controls = header.append("div").attr("class", "d-flex flex-wrap align-items-center gap-3");
+
+	const svg = card.append("svg").attr("width", width).attr("height", height);
+
+	const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+	d3.csv("./data/avg_view_every_month.csv")
+		.then(raw => {
+			// The first column is Month, the rest are channels
+			const columns = raw.columns || Object.keys(raw[0]);
+			const monthCol = columns[0];
+			const channelNames = columns.slice(1);
+
+			// Create month labels ("Jan", "Feb", ...) based on row index
+			const monthNames = [
+				"Jan",
+				"Feb",
+				"Mar",
+				"Apr",
+				"May",
+				"Jun",
+				"Jul",
+				"Aug",
+				"Sep",
+				"Oct",
+				"Nov",
+				"Dec",
+			];
+
+			raw.forEach((d, i) => {
+				d.monthLabel = monthNames[i] || d[monthCol];
+				channelNames.forEach(name => {
+					d[name] = +d[name];
+				});
+			});
+
+			const x = d3
+				.scalePoint()
+				.domain(raw.map(d => d.monthLabel))
+				.range([0, innerWidth])
+				.padding(0.5);
+
+			const y = d3
+				.scaleLinear()
+				.domain([0, d3.max(raw, d => d3.max(channelNames, name => d[name])) || 0])
+				.nice()
+				.range([innerHeight, 0]);
+
+			const color = d3
+				.scaleOrdinal()
+				.domain(channelNames)
+				.range(["#6200EA", "#03A9F4", "#4CAF50", "#FF9800", "#E91E63"]);
+
+			// Axes
+			g.append("g")
+				.attr("transform", `translate(0,${innerHeight})`)
+				.call(d3.axisBottom(x))
+				.selectAll("text")
+				.style("font-size", "12px");
+
+			g.append("g").call(d3.axisLeft(y).ticks(6));
+
+			// Axis labels
+			g.append("text")
+				.attr("x", innerWidth / 2)
+				.attr("y", innerHeight + 60)
+				.attr("text-anchor", "middle")
+				.style("font-family", "'Merriweather', serif")
+				.style("font-size", "14px")
+				.style("fill", "#3b118d")
+				.text("Month");
+
+			g.append("text")
+				.attr("transform", "rotate(-90)")
+				.attr("x", -innerHeight / 2)
+				.attr("y", -50)
+				.attr("text-anchor", "middle")
+				.style("font-family", "'Merriweather', serif")
+				.style("font-size", "14px")
+				.style("fill", "#3b118d")
+				.text("Average Views");
+
+			// Line generator
+			const line = d3
+				.line()
+				.x(d => x(d.monthLabel))
+				.y(d => y(d.value))
+				.curve(d3.curveMonotoneX);
+
+			// Prepare data per channel
+			const channelSeries = channelNames.map(name => ({
+				name,
+				values: raw.map(d => ({
+					monthLabel: d.monthLabel,
+					value: d[name],
+				})),
+			}));
+
+			// Tooltip for chart 4
+			const tooltip = card
+				.append("div")
+				.attr("class", "tooltip shadow")
+				.style("position", "absolute")
+				.style("opacity", 0)
+				.style("pointer-events", "none")
+				.style("padding", "8px 10px")
+				.style("border-radius", "4px")
+				.style("background", "#b35fa8")
+				.style("color", "white")
+				.style("font-family", "'Merriweather', serif")
+				.style("font-size", "12px");
+
+			// Draw lines
+			const linesGroup = g.append("g").attr("class", "lines-group");
+
+			const linePaths = linesGroup
+				.selectAll(".tarun-line")
+				.data(channelSeries)
+				.enter()
+				.append("path")
+				.attr("class", "tarun-line")
+				.attr("fill", "none")
+				.attr("stroke-width", 2.5)
+				.attr("stroke", d => color(d.name))
+				.attr("opacity", 0.9)
+				.attr("d", d => line(d.values));
+
+			// Animate lines on load
+			linePaths.each(function () {
+				const totalLength = this.getTotalLength();
+				d3.select(this)
+					.attr("stroke-dasharray", totalLength + " " + totalLength)
+					.attr("stroke-dashoffset", totalLength)
+					.transition()
+					.duration(900)
+					.ease(d3.easeCubicOut)
+					.attr("stroke-dashoffset", 0);
+			});
+
+			// Draw points for hover interaction
+			const pointsGroup = g.append("g").attr("class", "points-group");
+
+			const allPoints = pointsGroup
+				.selectAll("g.point-group")
+				.data(channelSeries)
+				.enter()
+				.append("g")
+				.attr("class", d => `point-group channel-${d.name.replace(/\\W/g, "")}`);
+
+			allPoints
+				.selectAll("circle")
+				.data(d => d.values.map(v => ({ ...v, channel: d.name })))
+				.enter()
+				.append("circle")
+				.attr("r", 4)
+				.attr("cx", d => x(d.monthLabel))
+				.attr("cy", d => y(d.value))
+				.attr("fill", d => color(d.channel))
+				.attr("opacity", 0.0) // keep invisible until hover
+				.style("cursor", "pointer")
+				.on("mouseover", function (event, d) {
+					d3.select(this).attr("opacity", 1);
+
+					tooltip
+						.style("opacity", 0.95)
+						.html(
+							`<div class="d-flex flex-column gap-1">
+							<span><strong>${d.channel}</strong></span>
+							<span>Month: ${d.monthLabel}</span>
+							<span>Views: ${tarunFormatNum(d.value)}</span>
+						</div>`
+						)
+						.style("left", event.pageX + 10 + "px")
+						.style("top", event.pageY - 28 + "px");
+				})
+				.on("mouseout", function () {
+					d3.select(this).attr("opacity", 0);
+					tooltip.style("opacity", 0);
+				});
+
+			// ---- Controls logic ----
+
+			// Keep track of what's visible
+			const selected = new Set(channelNames);
+
+			// Checkbox controls
+			const checkboxContainer = controls
+				.append("div")
+				.attr("class", "d-flex flex-wrap gap-2 align-items-center ");
+
+			channelNames.forEach(name => {
+				const wrapper = checkboxContainer
+					.append("label")
+					.attr("class", "d-flex align-items-center gap-1");
+
+				const idSafe = name.replace(/\\W/g, "");
+
+				wrapper
+					.append("input")
+					.attr("type", "checkbox")
+					.attr("class", "form-check-input h_checkbox")
+					.attr("id", `chk_${idSafe}`)
+					.property("checked", true)
+					.on("change", function () {
+						if (this.checked) {
+							selected.add(name);
+						} else {
+							selected.delete(name);
+						}
+						updateVisibility();
+						updateSwitchState();
+					});
+
+				wrapper.append("span").style("font-size", "12px").text(name);
+			});
+
+			// "Show all" switch
+			const switchWrapper = controls.append("div").attr("class", "d-flex align-items-center gap-2");
+
+			switchWrapper
+				.append("span")
+				.attr("class", "h_sub_title")
+				.style("font-size", "12px")
+				.text("Show all");
+
+			const showAllSwitch = switchWrapper
+				.append("input")
+				.attr("type", "checkbox")
+				.attr("class", "form-check-input h_switch")
+				.property("checked", true)
+				.on("change", function () {
+					const checked = this.checked;
+					selected.clear();
+					if (checked) {
+						channelNames.forEach(n => selected.add(n));
+					}
+					// Update all checkboxes
+					checkboxContainer.selectAll("input[type='checkbox']").property("checked", checked);
+					updateVisibility();
+				});
+
+			function updateSwitchState() {
+				// If every channel is selected, switch is ON; otherwise OFF
+				const allSelected = channelNames.every(n => selected.has(n));
+				showAllSwitch.property("checked", allSelected);
+			}
+
+			function updateVisibility() {
+				linePaths.attr("display", d => (selected.has(d.name) ? null : "none"));
+
+				allPoints.attr("display", d => (selected.has(d.name) ? null : "none"));
+			}
+
+			// Initial visibility
+			updateVisibility();
+		})
+		.catch(err => {
+			console.error("Error loading data for Chart 4:", err);
+			card.append("p").attr("class", "text-danger mt-2").text("Unable to load data for Chart 4.");
+		});
+})();

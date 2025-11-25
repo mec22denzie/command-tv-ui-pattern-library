@@ -1,0 +1,11 @@
+/* Styles specific to Tarun's charts (3 & 4) */
+
+#Taruns_chart_3 .tooltip,
+#Taruns_chart_4 .tooltip {
+	z-index: 10;
+}
+
+#Taruns_chart_3 svg,
+#Taruns_chart_4 svg {
+	background-color: #f3f1fa;
+}

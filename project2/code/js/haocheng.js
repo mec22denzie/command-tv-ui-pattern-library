@@ -113,11 +113,11 @@ const top_100_youtubers_data = await d3.csv("./data/top_100_youtubers.csv", d =>
 	CommentsAvg: +d.CommentsAvg,
 }));
 
-console.log("top100:Comments_avg", top_100_youtubers_data.length);
+console.log("top100:Comments_avg", top_100_youtubers_data);
 
 const width = 500;
 const height = 500;
-const margin = { top: 60, right: 30, bottom: 90, left: 80 };
+const margin = { top: 60, right: 30, bottom: 75, left: 75 };
 const innerWidth = width - margin.left - margin.right;
 const innerHeight = height - margin.top - margin.bottom;
 
@@ -136,9 +136,9 @@ const chart2_svg = container
 // todo: later need to update the title style
 chart2_svg
 	.append("text")
-	.attr("x", width / 2) // Center horizontally
-	.attr("y", margin.top / 2) // Position in top margin
-	.attr("text-anchor", "middle") // Center alignment
+	.attr("x", width / 2)
+	.attr("y", margin.top / 2)
+	.attr("text-anchor", "middle")
 	.style("fill", "#3b118d")
 	.style("font-family", "'Montserrat', sans-serif")
 	.style("font-size", "24px")
@@ -172,6 +172,7 @@ chart2_svg
 	.append("rect")
 	.attr("width", innerWidth)
 	.attr("height", innerHeight);
+
 // color scale
 const colorScale = d3
 	.scaleOrdinal()
