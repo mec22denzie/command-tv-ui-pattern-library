@@ -20,6 +20,8 @@ use the d3.select("#Taruns_chart_3")  d3.select("#Taruns_chart_4")  to select th
 // Tarun's charts: Chart 3 & Chart 4
 // This file uses D3 v7 (already loaded in index.html)
 
+/* todo: use the switch button, for show all instead of the options button */
+
 // Helper for nicely formatted numbers
 const tarunFormatNum = d3.format(",");
 
@@ -33,7 +35,7 @@ const tarunFormatNum = d3.format(",");
 
 	// Basic layout
 	const width = 600;
-	const height = 420;
+	const height = 500;
 	const margin = { top: 60, right: 30, bottom: 110, left: 80 };
 	const innerWidth = width - margin.left - margin.right;
 	const innerHeight = height - margin.top - margin.bottom;
@@ -41,17 +43,15 @@ const tarunFormatNum = d3.format(",");
 	// Add a wrapper div for some spacing / title
 	const card = container.append("div").attr("class", "mb-4 p-3 bg-white rounded shadow-sm");
 
-	card
-		.append("h3")
-		.attr("class", "h_title mb-1")
-		.text("Chart 3 – Number of YouTubers per Category");
+	/* todo: update the style to match the marys chart heading */
+	card.append("text").attr("class", "h3 mb-1").text("Chart 3 – Number of YouTubers per Category");
 
-	card
+	/* card
 		.append("p")
 		.attr("class", "h_sub_title mb-3")
 		.text(
 			"Counts how many channels appear in each category from the top 100 YouTube channels list."
-		);
+		); */
 
 	const svg = card.append("svg").attr("width", width).attr("height", height);
 
@@ -176,8 +176,8 @@ const tarunFormatNum = d3.format(",");
 
 	container.selectAll("*").remove();
 
-	const width = 650;
-	const height = 420;
+	const width = 600;
+	const height = 500;
 	const margin = { top: 60, right: 20, bottom: 80, left: 80 };
 	const innerWidth = width - margin.left - margin.right;
 	const innerHeight = height - margin.top - margin.bottom;

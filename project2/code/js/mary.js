@@ -9,11 +9,14 @@ https://www.svgrepo.com/svg/497849/category-2)
 
 use the d3.select("#Mary_chart_1"), d3.select("#Mary_chart_7") to select the dom placeholder 
 
+todo: add animation for initial transition and transform on load
+
+
 */
 /* chart1 */
 //Dimension
-const width = 700,
-	height = 550,
+const width = 600,
+	height = 500,
 	radius = Math.min(width, height) / 3.5,
 	padding = 50;
 
@@ -46,7 +49,7 @@ svg
 	.attr("y", padding + 30)
 	.attr("text-anchor", "middle")
 	.style("font-size", "24px")
-	.style("font-weight", "bold")
+	.style("font-weight", 700)
 	.style("fill", "#3B118D")
 	.style("font-family", "'Montserrat', sans-serif")
 	.text("Chart1: YouTube Channels in each Country");
@@ -55,12 +58,12 @@ svg
 svg
 	.append("foreignObject")
 	.attr("x", width / 2 - 80)
-	.attr("y", padding + 40)
-	.attr("width", 160)
+	.attr("y", padding + 50)
+	.attr("width", 240)
 	.attr("height", 30)
 	.append("xhtml:div").html(`
           <div style="display:flex; align-items:center; font-size:14px;">
-            <label style="font-weight:bold; color:#B35FA8; margin-right:5px;">
+            <label style="font-weight:700; color:#B35FA8; margin-right:5px;">
               Show top countries:
             </label>
             <select id="topSelect" style="color:#B35FA8; font-size:12px;">
@@ -246,8 +249,8 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 /* chart7 */
 
 //DIMENSIONS
-const width7 = 700,
-	height7 = 550,
+const width7 = 600,
+	height7 = 500,
 	radius7 = Math.min(width7, height7) / 3.5,
 	padding7 = 50;
 

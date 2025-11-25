@@ -5,6 +5,8 @@ Haocheng todo:
 
 use the d3.select("Haocheng_chart_2") to select the dom placeholder 
 
+
+todo: add animation for initial transition and transform on load
 */
 
 //const avg_view_data = await d3.csv("./data/avg_view_every_month.csv");
