@@ -46,7 +46,7 @@ defs
 svg
 	.append("text")
 	.attr("x", width / 2)
-	.attr("y", padding + 30)
+	.attr("y", padding)
 	.attr("text-anchor", "middle")
 	.style("font-size", "24px")
 	.style("font-weight", 700)
@@ -58,7 +58,7 @@ svg
 svg
 	.append("foreignObject")
 	.attr("x", width / 2 - 80)
-	.attr("y", padding + 50)
+	.attr("y", padding + 30)
 	.attr("width", 240)
 	.attr("height", 30)
 	.append("xhtml:div").html(`
@@ -280,7 +280,7 @@ defs7
 svg7
 	.append("text")
 	.attr("x", width7 / 2)
-	.attr("y", padding7 + 30)
+	.attr("y", padding7)
 	.attr("text-anchor", "middle")
 	.style("font-size", "24px")
 	.style("font-weight", "bold")

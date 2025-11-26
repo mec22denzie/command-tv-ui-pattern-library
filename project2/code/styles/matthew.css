@@ -1,0 +1,16 @@
+.infoBox {
+	background-color: #f3f1fa;
+	width: 600px;
+	padding: 10px;
+	margin: 10px;
+	font-family: Montserrat;
+	color: #3b118d;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.matthewSvgContainer {
+	background-color: #f3f1fa;
+	margin: 10px;
+}

@@ -115,9 +115,9 @@ const top_100_youtubers_data = await d3.csv("./data/top_100_youtubers.csv", d =>
 	CommentsAvg: +d.CommentsAvg,
 }));
 
-console.log("top100:Comments_avg", top_100_youtubers_data);
+//console.log("top100:Comments_avg", top_100_youtubers_data);
 
-const width = 500;
+const width = 600;
 const height = 500;
 const margin = { top: 60, right: 30, bottom: 75, left: 75 };
 const innerWidth = width - margin.left - margin.right;
@@ -214,44 +214,58 @@ const yAxisGroup = g.append("g").call(yAxis);
 // Create scatter plot group with clipping
 const scatterGroup = g.append("g").attr("clip-path", "url(#clip-chart2)");
 const formatNum = d3.format(",");
+
 const circles = scatterGroup
 	.selectAll("circle")
 	.data(top_100_youtubers_data)
 	.join("circle")
 	.attr("r", 5)
-	.attr("cx", d => xScale(d.followers))
-	.attr("cy", d => yScale(d.CommentsAvg))
+	.attr("cx", 0) // Start at origin
+	.attr("cy", innerHeight) // Start at bottom
 	.style("fill", (_, i) => colorScale(i))
 	.attr("data-color", (_, i) => colorScale(i))
-	.style("opacity", 0.7)
+	.style("opacity", 0)
 	.style("cursor", "pointer")
-	// mouse evt
-	.on("mouseover", function (event, d) {
-		d3.select(this)
-			.transition()
-			.duration(100)
-			.attr("r", 8) // Make circle bigger on hover
-			.style("fill", "#8D1179")
-			.style("opacity", 1);
+	.transition()
+	.duration(500)
+	.attr("cx", d => xScale(d.followers))
+	.attr("cy", d => yScale(d.CommentsAvg))
+	.style("opacity", 0.7)
+	.end()
+	.then(() => {
+		// Add mouse events after transition completes
+		scatterGroup
+			.selectAll("circle")
+			.on("mouseover", function (event, d) {
+				d3.select(this)
+					.transition()
+					.duration(100)
+					.attr("r", 8)
+					.style("fill", "#8D1179")
+					.style("opacity", 1);
 
-		tooltip.transition().duration(300).style("opacity", 0.9);
-		// set content
-		tooltip
-			.html(
-				`<div class="d-flex flex-column gap-2">
-          <span><strong>Country:</strong> ${d.Country || "N/A"}</span>
-          <span><strong>Followers:</strong> ${formatNum(d.followers)}</span>
-          <span><strong>Comments:</strong> ${formatNum(d.CommentsAvg)}</span>
-        </div>
-    `
-			)
-			.style("left", event.pageX + 10 + "px")
-			.style("top", event.pageY + 10 + "px");
-	})
-	.on("mouseout", function () {
-		const originalColor = d3.select(this).attr("data-color");
-		d3.select(this).transition().duration(200).attr("r", 5).style("fill", originalColor);
-		tooltip.transition().duration(500).style("opacity", 0);
+				tooltip.transition().duration(300).style("opacity", 0.9);
+				tooltip
+					.html(
+						`<div class="d-flex flex-column gap-2">
+                            <span><strong>Country:</strong> ${d.Country || "N/A"}</span>
+                            <span><strong>Followers:</strong> ${formatNum(d.followers)}</span>
+                            <span><strong>Comments:</strong> ${formatNum(d.CommentsAvg)}</span>
+                        </div>`
+					)
+					.style("left", event.pageX + 10 + "px")
+					.style("top", event.pageY + 10 + "px");
+			})
+			.on("mouseout", function () {
+				const originalColor = d3.select(this).attr("data-color");
+				d3.select(this)
+					.transition()
+					.duration(200)
+					.attr("r", 5)
+					.style("fill", originalColor)
+					.style("opacity", 0.7);
+				tooltip.transition().duration(500).style("opacity", 0);
+			});
 	});
 
 // Zoom function
@@ -276,8 +290,6 @@ function zoomed(event) {
 		.selectAll("circle")
 		.attr("cx", d => newXScale(d.followers))
 		.attr("cy", d => newYScale(d.CommentsAvg));
-
-	circles.attr("cx", d => newXScale(d.followers)).attr("cy", d => newYScale(d.CommentsAvg));
 }
 
 // Create zoom behavior
