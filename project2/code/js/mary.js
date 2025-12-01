@@ -141,7 +141,7 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 		const labelSlices = pieData.slice(0, topLabels);
 
 		//DONUT PATHS
-		chartGroup
+		const arcs = chartGroup
 			.selectAll("path")
 			.data(pieData)
 			.enter()
@@ -149,6 +149,10 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 			.attr("d", arc)
 			.attr("fill", d => color(d.data.country))
 			.style("stroke-width", "2px");
+
+		// Fade animation
+
+		arcs.attr("opacity", 0).transition().duration(2000).attr("opacity", 1);
 
 		//EDGE ARC for leader lines
 		const edgeArc = d3.arc().innerRadius(radius).outerRadius(radius);
@@ -291,7 +295,7 @@ svg7
 // CENTERED GROUP
 const chartGroup7 = svg7
 	.append("g")
-	.attr("transform", `translate(${width7 / 2.6}, ${height7 / 1.8})`)
+	.attr("transform", `translate(${width7 / 2.9}, ${height7 / 1.8})`)
 	.attr("filter", "url(#dropShadow)");
 
 d3.csv("data/top_100_youtubers.csv").then(data => {
@@ -356,7 +360,7 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 		.outerRadius(radius7 * 1.1);
 
 	// PIE CHART
-	chartGroup7
+	const arcs = chartGroup7
 		.selectAll("path")
 		.data(pie7(categoryData))
 		.enter()
@@ -364,6 +368,9 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 		.attr("d", arc7)
 		.attr("fill", d => color7(d.data.category))
 		.style("stroke-width", "2px");
+
+	// Fade animation
+	arcs.attr("opacity", 0).transition().duration(2000).attr("opacity", 1);
 
 	const pieData7 = pie7(categoryData);
 
@@ -411,7 +418,7 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 	const legend7 = svg7
 		.append("g")
 		.attr("class", "legend")
-		.attr("transform", `translate(${width7 - 190}, ${height7 / 3.5})`);
+		.attr("transform", `translate(${width7 - 160}, ${height7 / 3.5})`);
 
 	legend7
 		.append("text")

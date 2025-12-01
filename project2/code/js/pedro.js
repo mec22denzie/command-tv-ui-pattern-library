@@ -20,7 +20,7 @@ use the d3.select("#Pedro_chart_5") to select the dom placeholder
 	const Q_COLORS = [PRIMARY, SECONDARY, ACCENT, "#7B66C4"];
 
 	// Layout
-	const width = 1100;
+	const width = 1080;
 	const height = 480;
 	const margin = { top: 28, right: 36, bottom: 62, left: 300 };
 	const controlsH = 52;
@@ -57,17 +57,24 @@ use the d3.select("#Pedro_chart_5") to select the dom placeholder
 		.attr("x", width / 2)
 		.attr("y", margin.top + 14)
 		.attr("text-anchor", "middle")
+		.style("fill", "#3b118d")
+		.style("font-family", "'Montserrat', sans-serif")
+		.style("font-size", "24px")
+		.style("font-weight", "700")
+
+		.text("Chart5: Top 5 Channels — Quarterly Income");
+	/* .attr("text-anchor", "middle")
 		.style("font-size", "22px")
 		.style("font-weight", 700)
 		.style("fill", PRIMARY)
 		.style("font-family", "'Montserrat', sans-serif")
-		.text("Chart5: Top 5 Channels — Quarterly Income");
+		 */
 
 	// Controls (inline checkboxes)
 	const fo = svg
 		.append("foreignObject")
 		.attr("x", 16)
-		.attr("y", margin.top + 24)
+		.attr("y", margin.top + 36)
 		.attr("width", width - 32)
 		.attr("height", controlsH);
 

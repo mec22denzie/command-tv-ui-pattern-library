@@ -135,7 +135,6 @@ const chart2_svg = container
 
 // chart title
 
-// todo: later need to update the title style
 chart2_svg
 	.append("text")
 	.attr("x", width / 2)
