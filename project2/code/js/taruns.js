@@ -462,6 +462,8 @@ const tarunFormatNum = d3.format(",");
 					.append("input")
 					.attr("type", "checkbox")
 					.attr("class", "form-check-input h_checkbox")
+					.style("margin-top", "0")
+					.style("vertical-align", "middle")
 					.attr("id", `chk_${idSafe}`)
 					.property("checked", true)
 					.on("change", function () {
