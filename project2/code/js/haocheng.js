@@ -198,6 +198,7 @@ xAxisGroup
 	.style("text-anchor", "end")
 	.attr("dx", "-.8em")
 	.attr("dy", ".15em")
+	.style("fill", "#8d1179")
 	.attr("transform", "rotate(-45)");
 
 /* y axis is comments */
@@ -208,7 +209,7 @@ const yScale = d3.scaleLinear(
 	[innerHeight, 0]
 );
 const yAxis = d3.axisLeft().scale(yScale).ticks(5);
-const yAxisGroup = g.append("g").call(yAxis);
+const yAxisGroup = g.append("g").call(yAxis).selectAll("text").style("fill", "#8d1179");
 
 // Create scatter plot group with clipping
 const scatterGroup = g.append("g").attr("clip-path", "url(#clip-chart2)");
@@ -280,6 +281,7 @@ function zoomed(event) {
 		.style("text-anchor", "end")
 		.attr("dx", "-.8em")
 		.attr("dy", ".15em")
+		.style("fill", "#8d1179")
 		.attr("transform", "rotate(-45)");
 
 	yAxisGroup.call(yAxis.scale(newYScale));

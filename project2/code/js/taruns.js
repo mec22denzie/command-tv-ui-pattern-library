@@ -104,10 +104,11 @@ const tarunFormatNum = d3.format(",");
 				.selectAll("text")
 				.attr("transform", "rotate(-35)")
 				.style("text-anchor", "end")
+				.style("fill", "#8d1179")
 				.style("font-size", "11px");
 
 			// Y Axis
-			g.append("g").call(d3.axisLeft(y).ticks(6));
+			g.append("g").call(d3.axisLeft(y).ticks(6)).selectAll("text").style("fill", "#8d1179");
 
 			// Axis labels
 			g.append("text")
@@ -296,14 +297,18 @@ const tarunFormatNum = d3.format(",");
 				.attr("transform", `translate(0,${innerHeight})`)
 				.call(d3.axisBottom(x))
 				.selectAll("text")
-				.style("font-size", "12px");
+				.style("font-size", "12px")
+				.style("fill", "#8d1179");
 
-			g.append("g").call(
-				d3
-					.axisLeft(y)
-					.ticks(6)
-					.tickFormat(d => d3.format(".2s")(d))
-			);
+			g.append("g")
+				.call(
+					d3
+						.axisLeft(y)
+						.ticks(6)
+						.tickFormat(d => d3.format(".2s")(d))
+				)
+				.selectAll("text")
+				.style("fill", "#8d1179");
 
 			// Axis labels
 			g.append("text")
