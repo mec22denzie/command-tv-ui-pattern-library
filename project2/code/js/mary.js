@@ -111,6 +111,12 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 		percentage: ((count / total) * 100).toFixed(1),
 	}));
 	countryData.sort((a, b) => b.count - a.count);
+	const countryHasMostYouTubeChannel = countryData[0].country;
+
+	/* load the label */
+	d3.select("#Mary_label_1").html(
+		`Country with the Highest Number of Channel:<br><span style="color: #8D1179;">${countryHasMostYouTubeChannel}`
+	);
 
 	//COLOR SCALE
 	const color = d3
@@ -313,6 +319,14 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 	}));
 
 	categoryData.sort((a, b) => b.totalViews - a.totalViews);
+	const mostViewedCate = categoryData[0].category;
+	console.log(mostViewedCate);
+
+	/* load the label */
+
+	d3.select("#Mary_label_7").html(
+		`Most Viewed Category:<br><span style="color: #8D1179;">${mostViewedCate}`
+	);
 
 	const totalViewsAll = d3.sum(categoryData, d => d.totalViews);
 	categoryData = categoryData.map(d => ({
