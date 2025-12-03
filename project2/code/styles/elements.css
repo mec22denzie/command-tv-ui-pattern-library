@@ -156,8 +156,9 @@ input[type="checkbox"] {
 
 .form-check-label {
 	font-family: "Poppins", sans-serif !important;
-	font-size: 16px !important;
-	color: #1a1625 !important;
+	font-size: 14px !important;
+	font-weight: 700;
+	color: #b35fa8 !important;
 	cursor: pointer !important;
 }
 

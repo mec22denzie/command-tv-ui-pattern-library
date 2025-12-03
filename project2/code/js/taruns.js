@@ -70,7 +70,7 @@ const tarunFormatNum = d3.format(",");
 		.style("font-family", "'Montserrat', sans-serif")
 		.text("Chart3: Number of YouTubers per Category");
 
-	const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+	const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top + 10})`);
 
 	d3.csv("./data/top_100_youtubers.csv")
 		.then(raw => {
@@ -121,7 +121,7 @@ const tarunFormatNum = d3.format(",");
 				.style("font-family", "'Merriweather', serif")
 				.style("font-weight", 700)
 				.style("font-size", "16px")
-				.style("fill", "#8D1179")
+				.style("fill", "#3b118d")
 				.text("Category");
 
 			g.append("text")
@@ -130,7 +130,8 @@ const tarunFormatNum = d3.format(",");
 				.attr("y", -50)
 				.attr("text-anchor", "middle")
 				.style("font-family", "'Merriweather', serif")
-				.style("font-size", "14px")
+				.style("font-size", "16px")
+				.style("font-weight", 700)
 				.style("fill", "#3b118d")
 				.text("Number of YouTubers");
 
@@ -232,17 +233,16 @@ const tarunFormatNum = d3.format(",");
 	const titleBox = header.append("div");
 	titleBox
 		.append("text")
-
 		.style("color", "#3b118d")
 		.style("font-family", "'Montserrat', sans-serif")
 		.style("font-size", "24px")
-		.style("font-weight", "700")
+		.style("font-weight", 700)
 		.text("Chart4:Top 5 Monthly Average Views");
 
 	// Controls: checkboxes + switch
 	const controls = header
 		.append("div")
-		.attr("class", "d-flex flex-column flex-wrap align-items-start gap-4");
+		.attr("class", "d-flex flex-column flex-wrap align-items-start gap-4 mt-2");
 
 	const svg = container.append("svg").attr("width", width).attr("height", height);
 
@@ -312,6 +312,8 @@ const tarunFormatNum = d3.format(",");
 						.tickFormat(d => d3.format(".2s")(d))
 				)
 				.selectAll("text")
+
+				.style("font-size", "12px")
 				.style("fill", "#8d1179");
 
 			// Axis labels
@@ -320,7 +322,8 @@ const tarunFormatNum = d3.format(",");
 				.attr("y", innerHeight + 60)
 				.attr("text-anchor", "middle")
 				.style("font-family", "'Merriweather', serif")
-				.style("font-size", "14px")
+				.style("font-size", "16px")
+				.style("font-weight", 700)
 				.style("fill", "#3b118d")
 				.text("Month");
 
@@ -330,7 +333,8 @@ const tarunFormatNum = d3.format(",");
 				.attr("y", -50)
 				.attr("text-anchor", "middle")
 				.style("font-family", "'Merriweather', serif")
-				.style("font-size", "14px")
+				.style("font-size", "16px")
+				.style("font-weight", 700)
 				.style("fill", "#3b118d")
 				.text("Average Views");
 
