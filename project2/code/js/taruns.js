@@ -212,8 +212,8 @@ const tarunFormatNum = d3.format(",");
 	container.selectAll("*").remove();
 
 	const width = 600;
-	const height = 500;
-	const margin = { top: 60, right: 20, bottom: 80, left: 80 };
+	const height = 400;
+	const margin = { top: 60, right: 20, bottom: 60, left: 80 };
 	const innerWidth = width - margin.left - margin.right;
 	const innerHeight = height - margin.top - margin.bottom;
 
@@ -237,7 +237,7 @@ const tarunFormatNum = d3.format(",");
 		.style("font-family", "'Montserrat', sans-serif")
 		.style("font-size", "24px")
 		.style("font-weight", 700)
-		.text("Chart4:Top 5 Monthly Average Views");
+		.text("Chart4: Top 5 Monthly Average Views");
 
 	// Controls: checkboxes + switch
 	const controls = header

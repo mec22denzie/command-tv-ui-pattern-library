@@ -1,6 +1,5 @@
 .infoBox {
 	background-color: #f3f1fa;
-	width: 600px;
 	padding: 10px;
 	margin: 10px;
 	font-family: Montserrat;
@@ -12,5 +11,6 @@
 
 .matthewSvgContainer {
 	background-color: #f3f1fa;
-	margin: 10px;
+
+	display: block;
 }

@@ -120,3 +120,8 @@ textarea:focus {
 textarea::placeholder {
 	color: #bdb7ce;
 }
+
+table thead.table-primary-header {
+	background-color: #3b118d !important;
+	color: white !important;
+}

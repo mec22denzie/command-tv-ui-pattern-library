@@ -5,7 +5,7 @@ body {
 
 #Mary_chart_1,
 #Mary_chart_7 {
-	margin: 40px 0; /* enough spacing to avoid overlap */
+	margin: 0; /* enough spacing to avoid overlap */
 }
 .marySvgContainer {
 	background-color: #f3f1fa;

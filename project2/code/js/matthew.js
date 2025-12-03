@@ -46,7 +46,7 @@ d3.csv("./data/top_100_youtubers.csv").then(function (data) {
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
 		.append("g")
-		.attr("transform", `translate(${margin.left},${margin.top})`);
+		.attr("transform", `translate(${margin.left},${margin.top + 20})`);
 
 	// scales
 	const x = d3
@@ -149,7 +149,7 @@ d3.csv("./data/top_100_youtubers.csv").then(function (data) {
 		.style("fill", "#3B118D")
 		.style("font-size", "24px")
 		.style("font-weight", 700)
-		.text("Countries with the Most YouTubers");
+		.text("Chart8: Countries with the Most YouTubers");
 
 	// Most Liked YouTube Channels
 	const channelData = data
@@ -183,7 +183,7 @@ d3.csv("./data/top_100_youtubers.csv").then(function (data) {
 		.attr("width", width2 + margin2.left + margin2.right)
 		.attr("height", height2 + margin2.top + margin2.bottom)
 		.append("g")
-		.attr("transform", `translate(${margin2.left},${margin2.top})`);
+		.attr("transform", `translate(${margin2.left},${margin2.top + 20})`);
 
 	// scales
 	const x2 = d3
@@ -290,5 +290,5 @@ d3.csv("./data/top_100_youtubers.csv").then(function (data) {
 		.style("fill", "#3B118D")
 		.style("font-size", "24px")
 		.style("font-weight", 700)
-		.text("Most Liked YouTube Channels");
+		.text("Chart9: Most Liked YouTube Channels");
 });
