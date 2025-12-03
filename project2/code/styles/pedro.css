@@ -59,7 +59,7 @@
 /* ensure SVG text falls back to primary color & Montserrat */
 .pedroSvgContainer text {
 	fill: #3b118d;
-	font-family: "Montserrat", sans-serif !important;
+	font-family: "Montserrat", sans-serif;
 }
 
 /* segment labels style (if any) */

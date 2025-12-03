@@ -23,7 +23,7 @@ todo:each stack should show the value,refer to the ./assets/charts/6_channelsByM
 	// Layout
 	let width = 1000;
 	let height = 420;
-	const margin = { top: 42, right: 28, bottom: 46, left: 280 };
+	const margin = { top: 42, right: 28, bottom: 120, left: 120 };
 
 	// Check screen size and adjust dimensions
 	if (window.innerWidth <= 768) {
@@ -57,7 +57,7 @@ todo:each stack should show the value,refer to the ./assets/charts/6_channelsByM
 	svg
 		.append("text")
 		.attr("x", width / 2)
-		.attr("y", margin.top - 16)
+		.attr("y", margin.top)
 		.attr("text-anchor", "middle")
 		.style("font-family", "'Montserrat', sans-serif")
 		.style("font-size", "24px")
@@ -66,7 +66,7 @@ todo:each stack should show the value,refer to the ./assets/charts/6_channelsByM
 		.text("Chart5: Top 5 Channels — Quarterly Income");
 
 	// Selected Total badge (SVG)
-	const badge = svg.append("g").attr("transform", `translate(${width - 210}, ${margin.top - 16})`);
+	const badge = svg.append("g").attr("transform", `translate(${width - 210}, ${margin.top + 20})`);
 	badge
 		.append("rect")
 		.attr("rx", 8)
@@ -80,12 +80,12 @@ todo:each stack should show the value,refer to the ./assets/charts/6_channelsByM
 		.attr("x", 10)
 		.attr("y", 19)
 		.style("font-family", "'Poppins', sans-serif")
-		.style("font-size", "13px")
+		.style("font-size", "12px")
 		.style("fill", "#1A1625")
 		.text("Selected Total: 0");
 
 	// Main group
-	const g = svg.append("g").attr("transform", `translate(${margin.left}, ${margin.top})`);
+	const g = svg.append("g").attr("transform", `translate(${margin.left}, ${margin.top + 60})`);
 
 	// Axes & stack
 	const x = d3.scaleLinear().range([0, innerW]).domain([0, 3_500_000]);
@@ -95,14 +95,28 @@ todo:each stack should show the value,refer to the ./assets/charts/6_channelsByM
 
 	const xAxisG = g.append("g").attr("transform", `translate(0, ${innerH})`);
 	const yAxisG = g.append("g");
+
 	g.append("text")
 		.attr("x", innerW / 2)
-		.attr("y", innerH + 38)
+		.attr("y", innerH + 44)
 		.attr("text-anchor", "middle")
-		.style("font-family", "'Montserrat', sans-serif")
-		.style("font-size", "12px")
+		.style("font-family", "'Merriweather', sans-serif")
+		.style("font-size", "16px")
+		.style("font-weight", 700)
 		.style("fill", PRIMARY)
 		.text("Income (USD)");
+
+	// Add Y-axis label
+	g.append("text")
+		.attr("transform", "rotate(-90)")
+		.attr("x", -innerH / 2)
+		.attr("y", -margin.left + 25)
+		.attr("text-anchor", "middle")
+		.style("font-family", "'Merriweather', sans-serif")
+		.style("font-size", "16px")
+		.style("font-weight", 700)
+		.style("fill", PRIMARY)
+		.text("YouTube Channels");
 
 	const fmt = v => (v >= 1e6 ? (v / 1e6).toFixed(1) + "M" : d3.format(".2s")(v));
 
@@ -135,14 +149,19 @@ todo:each stack should show the value,refer to the ./assets/charts/6_channelsByM
 		xAxisG
 			.call(d3.axisBottom(x).ticks(8).tickFormat(fmt))
 			.selectAll("text")
-			.style("fill", PRIMARY)
-			.style("font-family", "'Montserrat', sans-serif");
+			.style("font-size", "12px")
+			.style("fill", SECONDARY);
 
 		yAxisG
 			.call(d3.axisLeft(y))
 			.selectAll("text")
-			.style("fill", PRIMARY)
-			.style("font-family", "'Montserrat', sans-serif");
+			.style("fill", SECONDARY)
+			.style("font-size", "12px")
+			.style("text-anchor", "end")
+			.attr("dx", "-.8em")
+			.attr("dy", ".15em")
+			.attr("transform", "rotate(-45)")
+			.text(d => (d.length > 15 ? d.substring(0, 15) + "..." : d));
 
 		currentSeries = stack(currentData);
 
