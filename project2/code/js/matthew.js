@@ -113,7 +113,7 @@ d3.csv("./data/top_100_youtubers.csv").then(function (data) {
 		.attr("y", height + margin.bottom - 40)
 		.style("text-anchor", "middle")
 		.style("font-family", "Merriweather")
-		.style("fill", "#8D1179")
+		.style("fill", "#3b118d")
 		.style("font-size", "16px")
 		.style("font-weight", 700)
 		.text("Country");
@@ -134,7 +134,7 @@ d3.csv("./data/top_100_youtubers.csv").then(function (data) {
 		.attr("y", -margin.left + 40)
 		.style("text-anchor", "middle")
 		.style("font-family", "Merriweather")
-		.style("fill", "#8D1179")
+		.style("fill", "#3b118d")
 		.style("font-size", "16px")
 		.style("font-weight", 700)
 		.text("Number of YouTubers");
@@ -254,7 +254,7 @@ d3.csv("./data/top_100_youtubers.csv").then(function (data) {
 		.attr("y", height2 + margin2.bottom - 40)
 		.style("text-anchor", "middle")
 		.style("font-family", "Merriweather")
-		.style("fill", "#8D1179")
+		.style("fill", "#3b118d")
 		.style("font-size", "16px")
 		.style("font-weight", 700)
 		.text("Likes");
@@ -275,7 +275,7 @@ d3.csv("./data/top_100_youtubers.csv").then(function (data) {
 		.attr("y", -margin2.left + 40)
 		.style("text-anchor", "middle")
 		.style("font-family", "Merriweather")
-		.style("fill", "#8D1179")
+		.style("fill", "#3b118d")
 		.style("font-size", "16px")
 		.style("font-weight", 700)
 		.text("Channel Name");

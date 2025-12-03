@@ -219,7 +219,7 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 			.attr("y", 0)
 			.style("font-size", "16px")
 			.style("font-weight", "bold")
-			.style("fill", "#8D1179")
+			.style("fill", "#3b118d")
 			.style("font-family", "'Merriweather', sans-serif")
 			.text("Country");
 
@@ -440,7 +440,7 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 		.attr("y", 0)
 		.style("font-size", "16px")
 		.style("font-weight", "bold")
-		.style("fill", "#8D1179")
+		.style("fill", "#3b118d")
 		.style("font-family", "'Merriweather', sans-serif")
 		.text("Category");
 

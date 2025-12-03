@@ -43,7 +43,6 @@ const tarunFormatNum = d3.format(",");
 	// Add a wrapper div for some spacing / title
 	/* 	const card = container.append("div").attr("class", "mb-4 p-3 bg-white rounded shadow-sm"); */
 
-	/* todo: update the style to match the marys chart heading */
 	/* 	card.append("text").attr("class", "h3 mb-1").text("Chart 3 – Number of YouTubers per Category"); */
 
 	/* card
@@ -63,7 +62,7 @@ const tarunFormatNum = d3.format(",");
 	svg
 		.append("text")
 		.attr("x", width / 2)
-		.attr("y", margin.top / 2)
+		.attr("y", margin.top / 2 + 10)
 		.attr("text-anchor", "middle")
 		.style("font-size", "24px")
 		.style("font-weight", 700)
@@ -105,10 +104,14 @@ const tarunFormatNum = d3.format(",");
 				.attr("transform", "rotate(-35)")
 				.style("text-anchor", "end")
 				.style("fill", "#8d1179")
-				.style("font-size", "11px");
+				.style("font-size", "12px");
 
 			// Y Axis
-			g.append("g").call(d3.axisLeft(y).ticks(6)).selectAll("text").style("fill", "#8d1179");
+			g.append("g")
+				.call(d3.axisLeft(y).ticks(6))
+				.selectAll("text")
+				.style("fill", "#8d1179")
+				.style("font-size", "12px");
 
 			// Axis labels
 			g.append("text")
@@ -116,8 +119,9 @@ const tarunFormatNum = d3.format(",");
 				.attr("y", innerHeight + 80)
 				.attr("text-anchor", "middle")
 				.style("font-family", "'Merriweather', serif")
-				.style("font-size", "14px")
-				.style("fill", "#3b118d")
+				.style("font-weight", 700)
+				.style("font-size", "16px")
+				.style("fill", "#8D1179")
 				.text("Category");
 
 			g.append("text")
