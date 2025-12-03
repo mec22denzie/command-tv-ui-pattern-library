@@ -138,17 +138,17 @@ const chart2_svg = container
 chart2_svg
 	.append("text")
 	.attr("x", width / 2)
-	.attr("y", margin.top / 2)
+	.attr("y", margin.top / 2 + 10)
 	.attr("text-anchor", "middle")
 	.style("fill", "#3b118d")
 	.style("font-family", "'Montserrat', sans-serif")
 	.style("font-size", "24px")
-	.style("font-weight", "700")
+	.style("font-weight", 700)
 	.text("Chart2: subscribers VS comments");
 
 const g = chart2_svg
 	.append("g")
-	.attr("transform", `translate(${margin.left},${margin.top})`)
+	.attr("transform", `translate(${margin.left},${margin.top + 10})`)
 	.attr("class", "graph");
 
 const tooltip = container
@@ -199,6 +199,7 @@ xAxisGroup
 	.attr("dx", "-.8em")
 	.attr("dy", ".15em")
 	.style("fill", "#8d1179")
+	.style("font-size", "12px")
 	.attr("transform", "rotate(-45)");
 
 /* y axis is comments */
@@ -208,8 +209,17 @@ const yScale = d3.scaleLinear(
 	[0, d3.max(top_100_youtubers_data, d => d.CommentsAvg)],
 	[innerHeight, 0]
 );
-const yAxis = d3.axisLeft().scale(yScale).ticks(5);
-const yAxisGroup = g.append("g").call(yAxis).selectAll("text").style("fill", "#8d1179");
+const yAxis = d3
+	.axisLeft()
+	.scale(yScale)
+	.ticks(5)
+	.tickFormat(d => d3.format(".2s")(d));
+const yAxisGroup = g
+	.append("g")
+	.call(yAxis)
+	.selectAll("text")
+	.style("fill", "#8d1179")
+	.style("font-size", "12px");
 
 // Create scatter plot group with clipping
 const scatterGroup = g.append("g").attr("clip-path", "url(#clip-chart2)");
@@ -310,11 +320,11 @@ chart2_svg.call(zoom);
 g.append("text")
 	.attr("text-anchor", "middle")
 	.attr("x", innerWidth / 2)
-	.attr("y", innerHeight + 60) // Position below the axis ticks
+	.attr("y", innerHeight + 50) // Position below the axis ticks
 	.style("font-family", "'Merriweather', serif")
-	.style("font-weight", "400")
 	.style("fill", "#3b118d")
-	.style("font-size", "14px")
+	.style("font-size", "16px")
+	.style("font-weight", 700)
 	.text("Followers");
 
 // y Axis label
@@ -322,10 +332,10 @@ g.append("text")
 g.append("text")
 	.attr("text-anchor", "middle")
 	.attr("transform", "rotate(-90)")
-	.attr("y", -60) // Position left of the axis ticks
+	.attr("y", -45) // Position left of the axis ticks
 	.attr("x", -innerHeight / 2)
 	.style("font-family", "'Merriweather', serif")
-	.style("font-weight", "400")
 	.style("fill", "#3b118d")
-	.style("font-size", "14px")
+	.style("font-size", "16px")
+	.style("font-weight", 700)
 	.text("Comments");
