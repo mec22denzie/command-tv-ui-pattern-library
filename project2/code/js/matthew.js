@@ -112,10 +112,10 @@ d3.csv("./data/top_100_youtubers.csv").then(function (data) {
 		.attr("x", width / 2)
 		.attr("y", height + margin.bottom - 40)
 		.style("text-anchor", "middle")
-		.style("font-family", "Montserrat")
+		.style("font-family", "Merriweather")
 		.style("fill", "#8D1179")
 		.style("font-size", "16px")
-		.style("font-weight", "bold")
+		.style("font-weight", 700)
 		.text("Country");
 
 	// y axis
@@ -133,10 +133,10 @@ d3.csv("./data/top_100_youtubers.csv").then(function (data) {
 		.attr("x", -height / 2)
 		.attr("y", -margin.left + 40)
 		.style("text-anchor", "middle")
-		.style("font-family", "Montserrat")
+		.style("font-family", "Merriweather")
 		.style("fill", "#8D1179")
 		.style("font-size", "16px")
-		.style("font-weight", "bold")
+		.style("font-weight", 700)
 		.text("Number of YouTubers");
 
 	// title
@@ -148,7 +148,7 @@ d3.csv("./data/top_100_youtubers.csv").then(function (data) {
 		.style("font-family", "Montserrat")
 		.style("fill", "#3B118D")
 		.style("font-size", "24px")
-		.style("font-weight", "bold")
+		.style("font-weight", 700)
 		.text("Countries with the Most YouTubers");
 
 	// Most Liked YouTube Channels
@@ -253,10 +253,10 @@ d3.csv("./data/top_100_youtubers.csv").then(function (data) {
 		.attr("x", width2 / 2)
 		.attr("y", height2 + margin2.bottom - 40)
 		.style("text-anchor", "middle")
-		.style("font-family", "Montserrat")
+		.style("font-family", "Merriweather")
 		.style("fill", "#8D1179")
 		.style("font-size", "16px")
-		.style("font-weight", "bold")
+		.style("font-weight", 700)
 		.text("Likes");
 
 	// y axis
@@ -274,10 +274,10 @@ d3.csv("./data/top_100_youtubers.csv").then(function (data) {
 		.attr("x", -height2 / 2)
 		.attr("y", -margin2.left + 40)
 		.style("text-anchor", "middle")
-		.style("font-family", "Montserrat")
+		.style("font-family", "Merriweather")
 		.style("fill", "#8D1179")
 		.style("font-size", "16px")
-		.style("font-weight", "bold")
+		.style("font-weight", 700)
 		.text("Channel Name");
 
 	// title
@@ -289,6 +289,6 @@ d3.csv("./data/top_100_youtubers.csv").then(function (data) {
 		.style("font-family", "Montserrat")
 		.style("fill", "#3B118D")
 		.style("font-size", "24px")
-		.style("font-weight", "bold")
+		.style("font-weight", 700)
 		.text("Most Liked YouTube Channels");
 });
