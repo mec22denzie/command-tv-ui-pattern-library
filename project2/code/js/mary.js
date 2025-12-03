@@ -195,7 +195,7 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 			.attr("class", "label")
 			.style("font-size", "11px")
 			.style("fill", "#B35FA8")
-			.style("font-family", "'Merriweather', 'Georgia', serif")
+			.style("font-family", "Montserrat , Georgia, serif")
 			.text(d => `${d.data.percentage}%`)
 			.attr("transform", d => {
 				const pos = outerArc.centroid(d);
@@ -220,7 +220,7 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 			.style("font-size", "16px")
 			.style("font-weight", "bold")
 			.style("fill", "#8D1179")
-			.style("font-family", "'Montserrat', sans-serif")
+			.style("font-family", "'Merriweather', sans-serif")
 			.text("Country");
 
 		const legendItem = legend
@@ -230,7 +230,7 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 			.append("g")
 			.attr("class", "legend-item")
 			.style("fill", "#8D1179")
-			.style("font-family", "'Montserrat', sans-serif")
+			.style("font-family", "'Merriweather', sans-serif")
 			.attr("transform", (d, i) => `translate(0, ${i * 25 + 20})`);
 
 		legendItem
@@ -293,7 +293,7 @@ svg7
 	.attr("y", padding7)
 	.attr("text-anchor", "middle")
 	.style("font-size", "24px")
-	.style("font-weight", "bold")
+	.style("font-weight", 700)
 	.style("fill", "#3B118D")
 	.style("font-family", "'Montserrat', sans-serif")
 	.text("Chart7: Most Viewed Categories on YouTube");
@@ -419,7 +419,7 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 		.attr("class", "label")
 		.style("font-size", "11px")
 		.style("fill", "#B35FA8")
-		.style("font-family", "'Merriweather', 'Georgia', serif")
+		.style("font-family", "'Montserrat', 'Georgia', serif")
 		.text(d => `${d.data.percentage}%`)
 		.attr("transform", d => {
 			const pos = outerArc7.centroid(d);
@@ -441,7 +441,7 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 		.style("font-size", "16px")
 		.style("font-weight", "bold")
 		.style("fill", "#8D1179")
-		.style("font-family", "'Montserrat', sans-serif")
+		.style("font-family", "'Merriweather', sans-serif")
 		.text("Category");
 
 	const legendItem7 = legend7
@@ -451,7 +451,7 @@ d3.csv("data/top_100_youtubers.csv").then(data => {
 		.append("g")
 		.attr("class", "legend-item")
 		.style("fill", "#8D1179")
-		.style("font-family", "'Montserrat', sans-serif")
+		.style("font-family", "'Merriweather', sans-serif")
 		.attr("transform", (d, i) => `translate(0, ${i * 25 + 20})`);
 
 	legendItem7
