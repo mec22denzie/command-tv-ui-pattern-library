@@ -18,12 +18,20 @@ todo:each stack should show the value,refer to the ./assets/charts/6_channelsByM
 	const PRIMARY = "#3B118D";
 	const SECONDARY = "#8D1179";
 	const ACCENT = "#B35FA8";
-	const Q_COLORS = [PRIMARY, SECONDARY, ACCENT, "#7B66C4"]; // Q1..Q4
+	const Q_COLORS = [PRIMARY, SECONDARY, "#E1A35A", "#36CCE5"]; // Q1..Q4
 
 	// Layout
-	const width = 1000;
-	const height = 420;
+	let width = 1000;
+	let height = 420;
 	const margin = { top: 42, right: 28, bottom: 46, left: 280 };
+
+	// Check screen size and adjust dimensions
+	if (window.innerWidth <= 768) {
+		width = 500;
+		height = 350;
+		margin.left = 180; // Reduce left margin for smaller screens
+	}
+
 	const innerW = width - margin.left - margin.right;
 	const innerH = height - margin.top - margin.bottom;
 
@@ -38,8 +46,10 @@ todo:each stack should show the value,refer to the ./assets/charts/6_channelsByM
 		.append("svg")
 		.attr("class", "pedroSvgContainer rounded shadow")
 		.attr("width", width)
-		.attr("height", height);
-
+		.attr("height", height)
+		.attr("viewBox", `0 0 ${width} ${height}`) // Add viewBox for scaling
+		.style("max-width", "100%") // Make it responsive
+		.style("height", "auto");
 	// Subtle card bg
 	d3.select(".pedroSvgContainer").style("background-color", "#F3F1FA");
 
@@ -165,6 +175,37 @@ todo:each stack should show the value,refer to the ./assets/charts/6_channelsByM
 			.attr("y", d => y(d.data.ChannelName))
 			.attr("height", y.bandwidth())
 			.attr("width", d => Math.max(1, x(d[1]) - x(d[0])));
+
+		// Add text labels for each stack segment
+		const labels = groupsMerge.selectAll("text.label").data(
+			s => s,
+			d => d.data.ChannelName
+		);
+		labels.exit().remove();
+		labels
+			.enter()
+			.append("text")
+			.attr("class", "pedro_rect_label")
+			.attr("text-anchor", "middle")
+			.attr("dy", "0.35em")
+			.attr("fill", ACCENT)
+			.style("pointer-events", "none")
+			.merge(labels)
+			.transition()
+			.duration(300)
+			.attr("x", d => {
+				const rectX = x(d[0]);
+				const rectWidth = Math.max(1, x(d[1]) - x(d[0]));
+				return rectX + rectWidth / 2;
+			})
+			.attr("y", d => y(d.data.ChannelName) + y.bandwidth() / 2)
+			.attr("fill", ACCENT)
+			.text(d => {
+				const value = d[1] - d[0];
+				// Only show text if the segment is wide enough
+				const rectWidth = Math.max(1, x(d[1]) - x(d[0]));
+				return rectWidth > 40 ? fmt(value) : "";
+			});
 
 		// Clear highlight & badge
 		highlightLayer.selectAll("*").remove();
